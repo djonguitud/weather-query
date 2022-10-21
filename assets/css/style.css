@@ -1,0 +1,131 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+:root {
+	--body-temporal-background-color: #14213d;
+	--container-temporal-background-color: #000000;
+	--button-temporal-background-color: #fca311;
+	--font-temporal-color: #ffffff;
+	font-size: 62.5%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 1.6rem;
+	background-color: var(--body-temporal-background-color);
+	background-image: linear-gradient(
+		358.4deg,
+		rgba(249, 151, 119, 1) -2.1%,
+		rgba(98, 58, 162, 1) 90%
+	);
+}
+
+.container {
+	max-width: 1250px;
+	margin: 0 auto;
+	min-height: 100vh;
+	color: var(--font-temporal-color);
+}
+
+.main__container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	/* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+	grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+	grid-auto-columns: 1fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		'title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper'
+		'search-local__wraper search-local__wraper search-local__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper'
+		'search-local__wraper search-local__wraper search-local__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper'
+		'search-local__wraper search-local__wraper search-local__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper'
+		'search-local__wraper search-local__wraper search-local__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper'
+		'search-local__wraper search-local__wraper search-local__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper'
+		'search-local__wraper search-local__wraper search-local__wraper . . . . . .';
+}
+
+.title__wraper {
+	grid-area: title__wraper;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn {
+	font-size: 1.5rem;
+}
+
+.search-local__wraper {
+	grid-area: search-local__wraper;
+	margin-bottom: 1em;
+}
+
+.local-storage {
+	padding-top: 1em;
+	justify-content: center;
+	align-items: center;
+}
+
+.local-btn {
+	margin-top: 0.5em;
+}
+
+.issued-city__wraper {
+	grid-area: issued-city__wraper;
+	padding: 0 1em 0 1em;
+}
+
+.next-days__wraper {
+	grid-area: next-days__wraper;
+	padding: 0.5em;
+}
+
+.next-day-card {
+	min-height: 2em;
+	margin: 1em 0.5em 0 0.5em;
+}
+
+@media screen and (max-width: 700px) {
+	.main__container {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 0px 0px;
+		grid-auto-flow: row;
+		grid-template-areas:
+			'title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper title__wraper'
+			'search-local__wraper search-local__wraper search-local__wraper search-local__wraper search-local__wraper search-local__wraper search-local__wraper search-local__wraper search-local__wraper'
+			'issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper'
+			'issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper issued-city__wraper'
+			'next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper'
+			'next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper'
+			'next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper next-days__wraper';
+	}
+
+	.title__wraper {
+		grid-area: title__wraper;
+	}
+
+	.search-local__wraper {
+		grid-area: search-local__wraper;
+	}
+
+	.issued-city__wraper- {
+		grid-area: issued-city__wraper-;
+	}
+
+	.next-days__wraper {
+		grid-area: next-days__wraper;
+	}
+
+	.local-storage {
+		grid-area: local-storage;
+	}
+}
