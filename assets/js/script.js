@@ -56,22 +56,11 @@ function retrieveInfoLocalStorage() {
 	let comeBack = localStorage.getItem('citiesQueue');
 	let parsed = JSON.parse(comeBack);
 	parsed.forEach((index) => {
-		elLocalStorage.append(
-			'<button type="button" class="local-btn btn btn-warning w-100">' + index + '</button>'
-		);
+		elLocalStorage.append('<button type="button" class="local-btn btn btn-warning w-100">' + index + '</button>');
 	});
 }
 
 retrieveInfoLocalStorage();
-
-/* 	elChameleon.each(function (i) {
-		let valueText = this.value;
-		tasks['task' + String(counter)] = valueText.trim();
-
-		counter += 1;
-	});
-	localStorage.setItem('tasks', JSON.stringify(tasks));
- */
 
 /*=====  End of Section comment block  ======*/
 
@@ -95,7 +84,3 @@ function firstUpperCase(word) {
 }
 
 /*=====  End of Section comment block  ======*/
-
-/* return arr.map(element => {
-  return element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
-}); */
