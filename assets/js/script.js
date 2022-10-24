@@ -10,8 +10,6 @@ const elNextDays = $('.next-days__wraper');
 const elQueryForm = $('#form-query');
 let elToday = $('#today-date');
 let currentDay = moment().format('MMM Do YY');
-let city;
-
 const citiesQueue = [];
 
 /*=====  End of Section comment block  ======*/
@@ -20,6 +18,20 @@ const citiesQueue = [];
 =            EVENTS SECTION           =
 =============================================*/
 elQueryForm.submit(citySearch);
+elLocalStorage.on('click', function (event) {
+	if (event.target.tagName === 'BUTTON') {
+		queryTodayWeather(event.target.textContent);
+		queryURLForecast(event.target.textContent);
+		$('#today-city').html(
+			event.target.textContent +
+				" <span id='today-date' class='text-success h5'>" +
+				'(' +
+				currentDay +
+				')' +
+				'</span>'
+		);
+	}
+});
 
 /*=====  End of Section comment block  ======*/
 
@@ -28,7 +40,8 @@ elQueryForm.submit(citySearch);
 =============================================*/
 //!Fetch today's weather from API Open Weather
 function queryTodayWeather(city) {
-	let queryURLWeather = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
+	let queryURLWeather =
+		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
 	fetch(queryURLWeather)
 		.then((resp1) => resp1.json())
 		.then((data) => {
@@ -39,15 +52,46 @@ function queryTodayWeather(city) {
 
 //!Fetch forecast weather from API Open Weather
 function queryURLForecast(city) {
-	let queryURLForecast = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey;
+	let queryURLForecast =
+		'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey;
 	fetch(queryURLForecast)
 		.then((resp2) => resp2.json())
 		.then((data) => {
-			renderday1(data.list[4].dt_txt, data.list[4].main.temp, data.list[4].wind.speed, data.list[4].main.humidity, data.list[4].weather[0].icon);
-			renderday2(data.list[11].dt_txt, data.list[11].main.temp, data.list[11].wind.speed, data.list[11].main.humidity, data.list[11].weather[0].icon);
-			renderday3(data.list[19].dt_txt, data.list[19].main.temp, data.list[19].wind.speed, data.list[19].main.humidity, data.list[19].weather[0].icon);
-			renderday4(data.list[25].dt_txt, data.list[25].main.temp, data.list[25].wind.speed, data.list[25].main.humidity, data.list[25].weather[0].icon);
-			renderday5(data.list[35].dt_txt, data.list[35].main.temp, data.list[35].wind.speed, data.list[35].main.humidity, data.list[35].weather[0].icon);
+			renderday1(
+				data.list[4].dt_txt,
+				data.list[4].main.temp,
+				data.list[4].wind.speed,
+				data.list[4].main.humidity,
+				data.list[4].weather[0].icon
+			);
+			renderday2(
+				data.list[11].dt_txt,
+				data.list[11].main.temp,
+				data.list[11].wind.speed,
+				data.list[11].main.humidity,
+				data.list[11].weather[0].icon
+			);
+			renderday3(
+				data.list[19].dt_txt,
+				data.list[19].main.temp,
+				data.list[19].wind.speed,
+				data.list[19].main.humidity,
+				data.list[19].weather[0].icon
+			);
+			renderday4(
+				data.list[25].dt_txt,
+				data.list[25].main.temp,
+				data.list[25].wind.speed,
+				data.list[25].main.humidity,
+				data.list[25].weather[0].icon
+			);
+			renderday5(
+				data.list[35].dt_txt,
+				data.list[35].main.temp,
+				data.list[35].wind.speed,
+				data.list[35].main.humidity,
+				data.list[35].weather[0].icon
+			);
 		});
 }
 
@@ -61,7 +105,14 @@ function citySearch(event) {
 		sendLocalStorage(issuedCity);
 		queryTodayWeather(issuedCity);
 		queryURLForecast(issuedCity);
-		$('#today-city').html(issuedCity + " <span id='today-date' class='text-success h5'>" + '(' + currentDay + ')' + '</span>');
+		$('#today-city').html(
+			issuedCity +
+				" <span id='today-date' class='text-success h5'>" +
+				'(' +
+				currentDay +
+				')' +
+				'</span>'
+		);
 	} else {
 		return;
 	}
@@ -75,14 +126,20 @@ function sendLocalStorage(city) {
 		citiesQueue.push(city);
 		localStorage.setItem('citiesQueue', JSON.stringify(citiesQueue));
 	}
+	elLocalStorage.append(
+		'<button type="button" class="local-btn btn btn-warning w-100">' + city + '</button>'
+	);
 }
 
 //!Create buttons from local storage
 function retrieveInfoLocalStorage() {
+	elLocalStorage.children('button').remove();
 	let comeBack = localStorage.getItem('citiesQueue');
 	let parsed = JSON.parse(comeBack);
-	parsed.forEach((index) => {
-		elLocalStorage.append('<button type="button" class="local-btn btn btn-warning w-100">' + index + '</button>');
+	parsed.forEach((item) => {
+		elLocalStorage.append(
+			'<button type="button" class="local-btn btn btn-warning w-100">' + item + '</button>'
+		);
 	});
 }
 
@@ -146,7 +203,6 @@ function iconRender(i) {
 }
 
 retrieveInfoLocalStorage();
-
 /*=====  End of Section comment block  ======*/
 
 /*=============================================
@@ -155,17 +211,16 @@ retrieveInfoLocalStorage();
 
 //!Convert first letter to Upper Case
 function firstUpperCase(word) {
-	switch (word) {
-		case word.toUpperCase():
-			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-			break;
-		case word.toLowerCase():
-			return word.charAt(0).toUpperCase() + word.slice(1);
-			break;
-		default:
-			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-			break;
-	}
+	let upperSet = [];
+	let wordSet = word.split(' ');
+	wordSet.forEach((w) => {
+		let upperLetter = w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+		upperSet.push(upperLetter);
+	});
+
+	let properWord = upperSet.join(' ');
+	upperSet.splice(0);
+	return properWord;
 }
 
 /*=====  End of Section comment block  ======*/
