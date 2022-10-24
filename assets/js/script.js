@@ -49,14 +49,20 @@ function sendLocalStorage(city) {
 		citiesQueue.push(city);
 		localStorage.setItem('citiesQueue', JSON.stringify(citiesQueue));
 	}
+	elLocalStorage.append(
+		'<button type="button" class="local-btn btn btn-warning w-100">' + city + '</button>'
+	);
 }
 
 //!Create buttons from local storage
 function retrieveInfoLocalStorage() {
+	elLocalStorage.children('button').remove();
 	let comeBack = localStorage.getItem('citiesQueue');
 	let parsed = JSON.parse(comeBack);
-	parsed.forEach((index) => {
-		elLocalStorage.append('<button type="button" class="local-btn btn btn-warning w-100">' + index + '</button>');
+	parsed.forEach((item) => {
+		elLocalStorage.append(
+			'<button type="button" class="local-btn btn btn-warning w-100">' + item + '</button>'
+		);
 	});
 }
 
@@ -70,17 +76,16 @@ retrieveInfoLocalStorage();
 
 //!Convert first letter to Upper Case
 function firstUpperCase(word) {
-	switch (word) {
-		case word.toUpperCase():
-			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-			break;
-		case word.toLowerCase():
-			return word.charAt(0).toUpperCase() + word.slice(1);
-			break;
-		default:
-			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-			break;
-	}
+	let upperSet = [];
+	let wordSet = word.split(' ');
+	wordSet.forEach((w) => {
+		let upperLetter = w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+		upperSet.push(upperLetter);
+	});
+
+	let properWord = upperSet.join(' ');
+	upperSet.splice(0);
+	return properWord;
 }
 
 /*=====  End of Section comment block  ======*/
