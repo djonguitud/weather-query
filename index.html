@@ -30,20 +30,19 @@
 						</form>
 					</div>
 					<div class="local-storage d-flex flex-column">
-						<h2 class="display-6">Saved Cities</h2>
-						<button type="button" class="local-btn btn btn-warning w-100">Houston</button>
+						<h2 class="display-6">Ciudades buscadas:</h2>
 					</div>
 				</div>
 				<!-- Issued City -->
 				<div class="issued-city__wraper">
 					<div class="card">
 						<div class="card-body">
-							<h2 class="card-title text-primary">Issued City <span>Date</span></h2>
-							<p class="card-text">🌧</p>
+							<h2 id="today-city" class="card-title text-primary">Monterrey</h2>
+							<img id="today-icon" class="card-text" />
 							<ul class="list-group">
-								<li class="list-group-item">An item</li>
-								<li class="list-group-item">A second item</li>
-								<li class="list-group-item">A third item</li>
+								<li id="today-temp" class="list-group-item">Temp: 74.57 ℉</li>
+								<li id="today-wind" class="list-group-item">Wind Speed: 1.23 km/h</li>
+								<li id="today-humidity" class="list-group-item">Humidity: 82 %</li>
 							</ul>
 						</div>
 					</div>
@@ -54,62 +53,63 @@
 				<div class="next-days__wraper d-flex flex-wrap justify-content-between">
 					<div class="card next-day-card flex-grow-1">
 						<div class="card-body">
-							<h2 class="card-title text-primary">Issued City <span>Date</span></h2>
-							<p class="card-text">🌧</p>
+							<h2 id="dayOne-date" class="card-title text-primary">Day 2</h2>
+							<img id="dayOne-icon" class="card-text" />
 							<ul class="list-group">
-								<li class="list-group-item">An item</li>
-								<li class="list-group-item">A second item</li>
-								<li class="list-group-item">A third item</li>
+								<li id="dayOne-temp" class="list-group-item">Datos por confirmar</li>
+								<li id="dayOne-wind" class="list-group-item">Datos por confirmar</li>
+								<li id="dayOne-humidity" class="list-group-item">Datos por confirmar</li>
 							</ul>
 						</div>
 					</div>
 					<div class="card next-day-card flex-grow-1">
 						<div class="card-body">
-							<h2 class="card-title text-primary">Issued City <span>Date</span></h2>
-							<p class="card-text">🌧</p>
+							<h2 id="dayTwo-date" class="card-title text-primary">Day 3</h2>
+							<img id="dayTwo-icon" class="card-text" />
 							<ul class="list-group">
-								<li class="list-group-item">An item</li>
-								<li class="list-group-item">A second item</li>
-								<li class="list-group-item">A third item</li>
+								<li id="dayTwo-temp" class="list-group-item">Datos por confirmar</li>
+								<li id="dayTwo-wind" class="list-group-item">Datos por confirmar</li>
+								<li id="dayTwo-humidity" class="list-group-item">Datos por confirmar</li>
 							</ul>
 						</div>
 					</div>
 					<div class="card next-day-card flex-grow-1">
 						<div class="card-body">
-							<h2 class="card-title text-primary">Issued City <span>Date</span></h2>
-							<p class="card-text">🌧</p>
+							<h2 id="dayThree-date" class="card-title text-primary">Day 4</h2>
+							<img id="dayThree-icon" class="card-text" />
 							<ul class="list-group">
-								<li class="list-group-item">An item</li>
-								<li class="list-group-item">A second item</li>
-								<li class="list-group-item">A third item</li>
+								<li id="dayThree-temp" class="list-group-item">Datos por confirmar</li>
+								<li id="dayThree-wind" class="list-group-item">Datos por confirmar</li>
+								<li id="dayThree-humidity" class="list-group-item">Datos por confirmar</li>
 							</ul>
 						</div>
 					</div>
 					<div class="card next-day-card flex-grow-1">
 						<div class="card-body">
-							<h2 class="card-title text-primary">Issued City <span>Date</span></h2>
-							<p class="card-text">🌧</p>
+							<h2 id="dayFour-date" class="card-title text-primary">Day 5</h2>
+							<img id="dayFour-icon" class="card-text" />
 							<ul class="list-group">
-								<li class="list-group-item">An item</li>
-								<li class="list-group-item">A second item</li>
-								<li class="list-group-item">A third item</li>
+								<li id="dayFour-temp" class="list-group-item">Datos por confirmar</li>
+								<li id="dayFour-wind" class="list-group-item">Datos por confirmar</li>
+								<li id="dayFour-humidity" class="list-group-item">Datos por confirmar</li>
 							</ul>
 						</div>
 					</div>
 					<div class="card next-day-card flex-grow-1">
 						<div class="card-body">
-							<h2 class="card-title text-primary">Issued City <span>Date</span></h2>
-							<p class="card-text">🌧</p>
+							<h2 id="dayFive-date" class="card-title text-primary">Day 6</h2>
+							<img id="dayFive-icon" class="card-text" />
 							<ul class="list-group">
-								<li class="list-group-item">An item</li>
-								<li class="list-group-item">A second item</li>
-								<li class="list-group-item">A third item</li>
+								<li id="dayFive-temp" class="list-group-item">Datos por confirmar</li>
+								<li id="dayFive-wind" class="list-group-item">Datos por confirmar</li>
+								<li id="dayFive-humidity" class="list-group-item">Datos por confirmar</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="https://momentjs.com/downloads/moment.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
