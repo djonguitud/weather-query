@@ -7,7 +7,7 @@ del clima a la ciudad a la que viajan.
 ### Puntos Clave
 
 - Búsqueda la ciudad de preferencia.
-- Se arroja la información del clima actual y de los próximos 15 días.
+- Se arroja la información del clima actual y de los próximos 5 días.
 - La información solicitada se guarda por ciudad.
 
 ### Creador
@@ -16,12 +16,18 @@ del clima a la ciudad a la que viajan.
 
 ## Demo
 
-App en construcción
+- [Visita la página web, haciendo click aqui!](https://djonguitud.github.io/weather-query/)
 
 ## Screenshot
 
-![App en construcción](./media/)
+![App en construcción](./assets/media/demo-app.png))
 
-## Contácto
+## Tecnologías implementadas
 
-Email djonguitud95@gmail.com or join our Slack channel.
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/>
+
+## Preguntas o sugerencias
+
+Contáctame a mi email: djonguitud95@gmail.com
