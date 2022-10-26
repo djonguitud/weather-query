@@ -38,18 +38,21 @@ elLocalStorage.on('click', function (event) {
 /*=============================================
 =            FUNCTIONS SECTION           =
 =============================================*/
+//! Function to get head from http request
+const responseHttp = (response) => {
+	if (response.ok) {
+		return response.json();
+	} else {
+		throw new Error(response.status);
+	}
+};
+
 //!Fetch today's weather from API Open Weather
 function queryTodayWeather(city) {
 	let queryURLWeather =
 		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
 	fetch(queryURLWeather)
-		.then((resp1) => {
-			if (resp1.ok) {
-				return resp1.json();
-			} else {
-				throw new Error(resp1.status);
-			}
-		})
+		.then((resp1) => responseHttp(resp1))
 		.then((data) => {
 			todaysWeather(data.main.temp, data.wind.speed, data.main.humidity);
 			iconRender(data);
@@ -64,13 +67,7 @@ function queryURLForecast(city) {
 	let queryURLForecast =
 		'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey;
 	fetch(queryURLForecast)
-		.then((resp2) => {
-			if (resp2.ok) {
-				return resp2.json();
-			} else {
-				throw new Error(resp2.status);
-			}
-		})
+		.then((resp2) => responseHttp(resp2))
 		.then((data) => {
 			renderday1(
 				data.list[4].dt_txt,
