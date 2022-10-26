@@ -1,5 +1,4 @@
 'use strict';
-
 /*=============================================
 =            VARIABLES  SECTION           =
 =============================================*/
@@ -18,6 +17,7 @@ const citiesQueue = [];
 =            EVENTS SECTION           =
 =============================================*/
 elQueryForm.submit(citySearch);
+
 elLocalStorage.on('click', function (event) {
 	if (event.target.tagName === 'BUTTON') {
 		queryTodayWeather(event.target.textContent);
@@ -120,10 +120,9 @@ function citySearch(event) {
 	let issuedCity = firstUpperCase(this[0].value);
 
 	if (issuedCity !== '') {
-		console.log(issuedCity);
-		sendLocalStorage(issuedCity);
+		createCitiesButtons(issuedCity);
 		queryTodayWeather(issuedCity);
-		//queryURLForecast(issuedCity);
+		queryURLForecast(issuedCity);
 		$('#today-city').html(
 			issuedCity +
 				" <span id='today-date' class='text-success h5'>" +
@@ -137,17 +136,24 @@ function citySearch(event) {
 	}
 }
 
-//!Local storage
-function sendLocalStorage(city) {
+//!Cities buttons creation
+function createCitiesButtons(city) {
 	if (citiesQueue.includes(city)) {
 		return;
 	} else {
 		citiesQueue.push(city);
-		localStorage.setItem('citiesQueue', JSON.stringify(citiesQueue));
+		createLocalStorage();
+		elLocalStorage.append(
+			'<button type="button" class="local-btn btn btn-warning w-100">' + city + '</button>'
+		);
 	}
-	elLocalStorage.append(
-		'<button type="button" class="local-btn btn btn-warning w-100">' + city + '</button>'
-	);
+}
+
+//!Extract cities buttons to send to local storage
+function createLocalStorage() {
+	elLocalStorage.each((btn) => {
+		localStorage.setItem('citiesQueue', JSON.stringify(citiesQueue));
+	});
 }
 
 //!Create buttons from local storage
@@ -221,7 +227,6 @@ function iconRender(i) {
 	$('#today-icon').attr('src', iconurl);
 }
 
-retrieveInfoLocalStorage();
 /*=====  End of Section comment block  ======*/
 
 /*=============================================
@@ -241,5 +246,13 @@ function firstUpperCase(word) {
 	upperSet.splice(0);
 	return properWord;
 }
+
+/*=====  End of Section comment block  ======*/
+
+/*=============================================
+=            Code Execution block            =
+=============================================*/
+
+retrieveInfoLocalStorage();
 
 /*=====  End of Section comment block  ======*/
