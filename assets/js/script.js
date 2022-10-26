@@ -42,6 +42,8 @@ elLocalStorage.on('click', function (event) {
 const responseHttp = (response) => {
 	if (response.ok) {
 		return response.json();
+	} else if (response.status === 404) {
+		alert('Wrong city name');
 	} else {
 		throw new Error(response.status);
 	}
@@ -59,6 +61,7 @@ function queryTodayWeather(city) {
 		})
 		.catch((err) => {
 			console.error('ERROR: ', err.message);
+			return;
 		});
 }
 
@@ -107,6 +110,7 @@ function queryURLForecast(city) {
 		})
 		.catch((err) => {
 			console.error('ERROR: ', err.message);
+			return;
 		});
 }
 
