@@ -43,10 +43,19 @@ function queryTodayWeather(city) {
 	let queryURLWeather =
 		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
 	fetch(queryURLWeather)
-		.then((resp1) => resp1.json())
+		.then((resp1) => {
+			if (resp1.ok) {
+				return resp1.json();
+			} else {
+				throw new Error(resp1.status);
+			}
+		})
 		.then((data) => {
 			todaysWeather(data.main.temp, data.wind.speed, data.main.humidity);
 			iconRender(data);
+		})
+		.catch((err) => {
+			console.error('ERROR: ', err.message);
 		});
 }
 
@@ -55,7 +64,13 @@ function queryURLForecast(city) {
 	let queryURLForecast =
 		'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey;
 	fetch(queryURLForecast)
-		.then((resp2) => resp2.json())
+		.then((resp2) => {
+			if (resp2.ok) {
+				return resp2.json();
+			} else {
+				throw new Error(resp2.status);
+			}
+		})
 		.then((data) => {
 			renderday1(
 				data.list[4].dt_txt,
@@ -92,6 +107,9 @@ function queryURLForecast(city) {
 				data.list[35].main.humidity,
 				data.list[35].weather[0].icon
 			);
+		})
+		.catch((err) => {
+			console.error('ERROR: ', err.message);
 		});
 }
 
@@ -104,7 +122,7 @@ function citySearch(event) {
 		console.log(issuedCity);
 		sendLocalStorage(issuedCity);
 		queryTodayWeather(issuedCity);
-		queryURLForecast(issuedCity);
+		//queryURLForecast(issuedCity);
 		$('#today-city').html(
 			issuedCity +
 				" <span id='today-date' class='text-success h5'>" +
